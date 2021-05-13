@@ -88,6 +88,20 @@
             <field name="product_qty" position="after">
                 <field name="picking_product_qty"/>
             </field>
+            <xpath expr="//field[@name='scan_log_ids']/.." position="before">
+                <group name="pending_operations" string="Pending operations" attrs="{'invisible': [('picking_id', '=', False)]}">
+                    <field name="pending_move_ids" nolabel="1" mode="tree">
+                        <tree>
+                            <field name="date_expected"/>
+                            <field name="product_id"/>
+                            <field name="product_uom_qty"/>
+                            <field name="quantity_done"/>
+                            <field name="state" invisible="1"/>
+                            <field name="move_line_ids" invisible="1"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
         </field>
     </record>
 
